@@ -1,0 +1,10 @@
+# Python environments
+venv/
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# Legacy code (deprecated old scripts)
+legacy/

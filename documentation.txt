@@ -1,0 +1,103 @@
+Display Panel — Usage Guide
+
+The Display Panel (DP) is designed to visualize two-dimensional data quickly and interactively.
+Internally, DP operates on xarray objects. 
+This keeps data handling clean and consistent: regardless of the original format, the program only needs a converter that loads the dataset into an xarray structure.
+
+In practice, the user does not modify the Display Panel itself — they simply write a converter (for example userdata_to_xarray.py) that translates their data into xarray. 
+For organization, custom converters should be placed in the /data_converters directory.
+
+Included Examples:
+
+Three examples are provided to illustrate typical workflows and to serve as templates for new converters.
+
+Example 0 — ARPES NeXus data
+Visualizes ARPES.nxs files commonly produced at synchrotron beamlines such as I05 at Diamond Light Source (UK).
+It uses the converter (written by Brendan Edwards):
+data_converters/i05HR_to_xarray.py 
+
+Example 1 — Text-exported resPES data
+Loads resonant photoemission data stored as text files.
+The converter:
+data_converters/txt2xarray.py
+is intentionally simple and serves as a general template for implementing new converters.
+
+Example 2 — FIB microscopy images
+Displays images of titanium platforms patterned with a dot grid using a Focused Ion Beam (FIB).
+The converter:
+data_converters/image2xarray.py
+demonstrates how image data can be fed directly into the Display Panel.
+
+To run any example, open a terminal inside the Display Panel directory and execute:
+python Example#.py
+
+Interaction:
+
+Navigation:
+
+Resize: The Display Panel window is fully resizable 
+Zoom: mouse wheel or two-finger trackpad gesture
+Pan: left-click and drag
+When Bilateral Link is enabled, side panels follow the main panel during zooming and panning.
+If Follow Me is enabled, moving the main panel does not move the cursors.
+Move cursor: left-click on cursor and drag
+
+Colormap:
+
+Colormaps can be selected from the dropdown menu (default: Greys).
+The sliders adjust the intensity range, and the adjacent checkbox inverts the colormap.
+
+Integration Mode:
+
+DP can integrate data over selectable regions.
+Span defines the width of the integration window
+Step defines the increment of the integration arrows
+(Both must be non-zero to take effect)
+The Dim/Pix option switches between dataset coordinates and pixel units.
+The checkboxes next to Step allow integration across the full dataset dimension.
+
+Multiple Files:
+
+When several datasets are loaded, they can be switched instantly using either the mouse or the keyboard arrows.
+
+Exporting Data:
+
+Right-clicking on any panel opens the PyQt export menu, allowing figures or data to be saved in multiple formats and offering additional visualization options.
+
+Keyboard Shortcuts:
+
+(Mouse pointer must be over the main panel — tested on a German keyboard layout)
+
+Cursor visibility
+1 2 3 4 — toggle individual cursors
+Space — toggle all cursors
+
+Cursor style
+Q W E R — change guidelines
+5 6 7 8 — change guidelines (integration mode)
+
+Orthogonal cuts
+A S D F — toggle orthogonal cuts
+
+Cursor fine movement
+Arrows — move cursor 1
+Shift + Arrows — move cursor 2
+Y + Arrows — move cursor 3
+X + Arrows — move cursor 4
+C + Arrows — move all cursors
+
+Enter — reset all cursors
+
+Integration visualization
+G — fade cursor borders
+V — vertical cursor mode (reset to exit)
+H — horizontal cursor mode (reset to exit)
+
+
+
+
+
+
+
+
+
